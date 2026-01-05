@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Clouds to Photo Online for Free</title>
+    <meta name="description" content="Instantly add clouds to photo with our easy-to-use online AI tool. Replace boring skies and make your images pop with dramatic, beautiful cloudscapes.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600;800&family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 3D Animation Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.clouds.min.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="#">AddCloudsAI</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#playground">Try It</a>
+            <a href="#how-to-use">How It Works</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#faqs">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <!-- Layer 1: Background Image -->
+        <div class="hero-bg-image">
+            <img src="images/hero-bg.jpg" alt="Blue sky with clouds background" loading="eager">
+        </div>
+        
+        <!-- Layer 2: Animation Overlay -->
+        <div class="hero-bg-animation" id="hero-vanta"></div>
+        
+        <!-- Layer 3: Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Layer 4: Content -->
+        <div class="hero-content fade-in-up">
+            <h1>Add Clouds to Photo with AI</h1>
+            <p>Instantly add clouds to photo with our easy-to-use online AI tool. Replace boring skies and make your images pop with dramatic, beautiful cloudscapes.</p>
+            <a href="#playground" class="btn btn-primary">Apply Image Effect</a>
+        </div>
+    </section>
+
+    <!-- Playground Section -->
+    <section id="playground">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Add Clouds to Photo with AI</h2>
+                <p>Add clouds to your photos online and create stunning sky effects. Enhance your images with realistic clouds for a natural and professional look.</p>
+            </div>
+            
+            <div class="playground-grid">
+                <!-- Left: Upload Panel -->
+                <div class="playground-panel upload-panel fade-in-left">
+                    <h4>Upload Image</h4>
+                    <div class="upload-zone" id="upload-zone">
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <div class="upload-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 16l4-4 4 4m4-4l4 4M4 12V6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6"/>
+                            </svg>
+                            <p>Drag & drop or click to upload</p>
+                            <span>PNG, JPG up to 10MB</span>
+                        </div>
+                        <img id="preview-image" class="hidden" alt="Preview">
+                    </div>
+                    <div class="playground-actions">
+                        <button class="btn btn-primary" id="generate-btn" disabled>Apply Image Effect</button>
+                        <button class="btn btn-secondary" id="reset-btn">Reset</button>
+                    </div>
+                </div>
+                
+                <!-- Right: Result Panel -->
+                <div class="playground-panel result-panel fade-in-right">
+                    <h4>Result</h4>
+                    <div class="result-display" id="result-container">
+                        <div class="result-placeholder" id="result-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <path d="M21 15l-5-5L5 21"/>
+                            </svg>
+                            <p>Result will appear here</p>
+                        </div>
+                        <div class="loading-overlay hidden" id="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p id="loading-text">Adding clouds...</p>
+                        </div>
+                        <img id="result-image" class="hidden" alt="Result">
+                    </div>
+                    <div class="playground-actions">
+                        <button class="btn btn-primary" id="download-btn" disabled>Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-to-use">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>3 Simple Step to add Cloud to Photo</h2>
+                <p>Add clouds to photo and give your images depth and realism in just a few clicks.</p>
+            </div>
+            
+            <div class="steps-grid stagger-children">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="icon-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <h3>Upload Photo</h3>
+                    <p>Select a photo with a visible sky area to ensure the cloud effect looks natural.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="icon-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m8 22 4-10 4 10"/><path d="M8 13h8"/></svg>
+                    </div>
+                    <h3>Apply Image Effect</h3>
+                    <p>Click 'Apply Image Effect' to place realistic cloud formations seamlessly into your image.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="icon-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                    <h3>Download & Share</h3>
+                    <p>Save your cloud-enhanced photo and share it with family, or online communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>What Incredible Results Await You</h2>
+                <p>Enhance boring skies with our realistic cloud generation technology.</p>
+            </div>
+            
+            <div class="gallery-grid stagger-children">
+                <div class="gallery-item card-lift">
+                    <img src="images/gallery-result-1.jpg" alt="Green landscape with clouds" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Nature Landscape</span>
+                    </div>
+                </div>
+                <div class="gallery-item card-lift">
+                    <img src="images/gallery-result-2.jpg" alt="City skyline with cirrus clouds" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Urban Sky</span>
+                    </div>
+                </div>
+                <div class="gallery-item card-lift">
+                    <img src="images/gallery-result-3.jpg" alt="Sunset beach with clouds" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Sunset Drama</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Loved by Creators</h2>
+                <p>See what others are saying about our cloud effects.</p>
+            </div>
+            
+            <div class="testimonials-grid stagger-children">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">The clouds look so realistic! It saved my overexposed sky shot completely. I can't believe how natural the lighting integration is.</p>
+                    <div class="testimonial-author">
+                        <img src="images/avatar-1.jpg" alt="Sarah Jenkins" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Sarah Jenkins</div>
+                            <div class="testimonial-role">Photographer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Perfect for architectural renders. The sky blending is top notch and saves me hours of manual Photoshop work.</p>
+                    <div class="testimonial-author">
+                        <img src="images/avatar-2.jpg" alt="Mike Ross" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Mike Ross</div>
+                            <div class="testimonial-role">Architect</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Added such a dreamy vibe to my travel photos. The interface is super simple and the results are instant. Love it!</p>
+                    <div class="testimonial-author">
+                        <img src="images/avatar-3.jpg" alt="Jessica Lee" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Jessica Lee</div>
+                            <div class="testimonial-role">Travel Blogger</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>FAQs About Adding Clouds to Photo</h2>
+                <p>Common questions about our sky enhancement tool.</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">How do I add clouds to my photo?</button>
+                    <div class="faq-answer">
+                        <p>Simply upload your image, choose or describe the cloud style you want, and apply the effect. The tool will seamlessly blend the clouds into your sky for a natural look.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">Will the added clouds look realistic?</button>
+                    <div class="faq-answer">
+                        <p>Our AI cloud-adding tool uses sky detection and adjusts lighting, color, and perspective to ensure clouds integrate naturally. Less advanced tools may make clouds appear pasted on.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">What kind of photos work best for this effect?</button>
+                    <div class="faq-answer">
+                        <p>Images with a clear or visible sky work best. High-resolution, well-lit skies allow the tool to accurately detect and enhance or replace clouds.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">Are my images private?</button>
+                    <div class="faq-answer">
+                        <p>Remix AI prioritizes user privacy. Our AI tools do not store images long-term and keep edits private, but it’s always a good idea to review the privacy policy.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">Do I need advanced editing skills to add clouds?</button>
+                    <div class="faq-answer">
+                        <p>Not at all. Many AI tools, like Remix AI Perfect, are very user-friendly. Advanced software, such as Photoshop, provides more control if you’re familiar with layers and masking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">AddCloudsAI</div>
+                <p>Enhance your photography with AI-powered sky replacements. Professional results in seconds.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#playground">Try Effect</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#how-to-use">How It Works</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="mailto:support@addcloudsai.com">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#" data-modal-target="privacy-modal">Privacy Policy</a></li>
+                    <li><a href="#" data-modal-target="terms-modal">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 AddCloudsAI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" data-modal-close="privacy-modal">&times;</span>
+            <div class="modal-body">
+                <h2>Privacy Policy</h2>
+                <p><strong>Last Updated:</strong> 2024</p>
+                <h4>1. Data Collection</h4>
+                <p>We collect only the minimum data necessary:</p>
+                <ul>
+                    <li>Images you upload for processing (temporarily stored)</li>
+                    <li>Basic usage analytics (non-personal)</li>
+                    <li>Browser type and device information</li>
+                </ul>
+                <h4>2. Image Processing</h4>
+                <p>Your uploaded images are:</p>
+                <ul>
+                    <li>Processed securely on our servers</li>
+                    <li>Automatically deleted within 24 hours</li>
+                    <li>Never shared with third parties</li>
+                    <li>Not used for AI training without consent</li>
+                </ul>
+                <h4>3. Data Security</h4>
+                <p>All data transmission is encrypted using SSL/TLS protocols.</p>
+                <h4>4. Cookies</h4>
+                <p>We use essential cookies only for site functionality.</p>
+                <h4>5. Your Rights</h4>
+                <p>You have the right to request deletion of any stored data.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" data-modal-close="terms-modal">&times;</span>
+            <div class="modal-body">
+                <h2>Terms of Service</h2>
+                <p><strong>Last Updated:</strong> 2024</p>
+                <h4>1. Acceptance of Terms</h4>
+                <p>By using this service, you agree to these Terms.</p>
+                <h4>2. Service Description</h4>
+                <p>This service provides AI-powered image transformation. Provided "as-is" without warranties.</p>
+                <h4>3. Acceptable Use</h4>
+                <p>You agree NOT to upload:</p>
+                <ul>
+                    <li>Illegal or unlawful content</li>
+                    <li>Explicit, pornographic, or obscene material</li>
+                    <li>Content depicting violence or harm</li>
+                    <li>Images you do not have rights to use</li>
+                </ul>
+                <h4>4. Intellectual Property</h4>
+                <p>You retain full ownership of your original images. Generated effects are royalty-free for personal and commercial use.</p>
+                <h4>5. Limitation of Liability</h4>
+                <p>We are not liable for any damages arising from the use of this service.</p>
+                <h4>6. Modifications</h4>
+                <p>We may update these terms at any time. Continued use constitutes acceptance.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
